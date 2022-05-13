@@ -1,0 +1,15 @@
+SERVER
+go run main.go
+
+DB
+cd /database
+docker build . -t api-rest-web-db
+docker run -p 54321:5432 api-rest-web-db
+docker run -p 54321:5432 -e POSTGRES_PASSWORD=postgres  api-rest-web-db
+
+CONTAINER
+docker build . -t api-rest-ws-app
+docker run -p 5050:5050 api-rest-ws-app
+
+COMPOSER
+docker compose up -d
